@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>nome</th>
+            <th>preco</th>
+            <th>estoque</th>
+        </tr>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{produtos.nome}}</td>
+            <td>{{produtos.preco}}</td>
+            <td>{{produtos.estoque}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -23,27 +23,28 @@ class Produtos(models.Model):
     imagem = models.ImageField(upload_to='imagens_produtos')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
-
-# 2. Crie um model para clientes que contenha nome, cpf, email, data de nascimento, 
-# telefone e data de inscrição no sistema. 
-
-class Cliente(models.Model):
-    nome = models.CharField(max_length=50)
-    cpf = models.CharField(max_length=12)
-    email = models.EmailField()
-    data_nascimento = models.DateField()
-    telefone = models.CharField(max_length=14)
-    data_inscricao = models.DateTimeField()
-
-# 1. Crie um model para endereços que contenha rua, bairro, cidade e número. 
-
 class Endereco(models.Model):
     rua = models.CharField(max_length=100)
     bairro = models.CharField(max_length=70)
     cidade = models.CharField(max_length=50)
     complemento= models.TextField()
     numero = models.CharField(max_length=15)
-    cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.rua}, {self.numero}, {self.bairro}"
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=50)
+    cpf = models.CharField(max_length=14)
+    email = models.EmailField()
+    data_nascimento = models.DateField()
+    telefone = models.CharField(max_length=14)
+    data_inscricao = models.DateTimeField()
+    endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.id} - {self.nome}"
+
 
 class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

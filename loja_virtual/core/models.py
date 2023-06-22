@@ -8,9 +8,6 @@ class Categoria(models.Model):
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_ultima_edicao = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.nome
-
 class Produtos(models.Model):
     nome = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
@@ -30,9 +27,6 @@ class Endereco(models.Model):
     complemento= models.TextField()
     numero = models.CharField(max_length=15)
 
-    def __str__(self):
-        return f"{self.rua}, {self.numero}, {self.bairro}"
-
 class Cliente(models.Model):
     nome = models.CharField(max_length=50)
     cpf = models.CharField(max_length=14)
@@ -41,9 +35,6 @@ class Cliente(models.Model):
     telefone = models.CharField(max_length=14)
     data_inscricao = models.DateTimeField()
     endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.id} - {self.nome}"
 
 
 class Pedido(models.Model):

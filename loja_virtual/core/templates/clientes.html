@@ -24,7 +24,7 @@
         {% endfor %}
     </table>
     <h1>{{qualquer}}</h1>
-    <form action="{% url `cadastrar_cliente_endereço`%}" metrod=" post">
+    <form action="{% url 'cadastrar_cliente_endereço' %}" metrod=" post">
         {% csrf_token %}
 
         <input type="text" placeholder="Digite seu nome..."name="nomme_cliente">
@@ -39,7 +39,7 @@
         <input type="text" placeholder="Digite o complemento..."name="complemento">
         <input type="text" placeholder="Digite o numero..."name="numero">
         <br>
-        <button type="input" class="btn-primary">salvar</button>
+        <button type="submit" class="btn-primary">salvar</button>
 </form>
 
 

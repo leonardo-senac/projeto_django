@@ -42,7 +42,7 @@ class Cliente(models.Model):
     email = models.EmailField()
     data_nascimento = models.DateField()
     telefone = models.CharField(max_length=14)
-    data_inscricao = models.DateTimeField()
+    data_inscricao = models.DateTimeField(auto_now_add=True)
     endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)
 
     def __str__(self):

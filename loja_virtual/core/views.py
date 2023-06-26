@@ -32,7 +32,8 @@ def cadastrar_cliente_endereco(request):
 
 def lista_produtos(request):
     produtos = Produtos.objects.all()
-    return render(request, 'produtos.html', {'produtos': produtos})
+    categorias = Categoria.objects.all()
+    return render(request, 'produtos.html', {'produtos': produtos, 'categorias': categorias})
 
 def cadastrar_produto(request):
     novo_nome = request.POST.get('nome_produto')
@@ -40,11 +41,11 @@ def cadastrar_produto(request):
     novo_preco = request.POST.get('preco')
     novo_estoque = request.POST.get('estoque')
     id_categoria = request.POST.get('categoria')
-    nova_categoria = Categoria.objects.get(id=id_categoria)
+    nova_categoria = Categoria.objects.get(id=int(id_categoria))
 
-    Produtos.objects.create(nome=novo_nome, descreicao=nova_descricao, preco=novo_preco, estoque=novo_estoque, categoria=nova_categoria)
+    Produtos.objects.create(nome=novo_nome, descricao=nova_descricao, preco=novo_preco, estoque=novo_estoque, categoria=nova_categoria)
 
-    return render(lista_clientes)
+    return redirect(lista_produtos)
 
 def cadastrar_categoria(request):
     novo_nome = request.POST.get('nome_categoria')

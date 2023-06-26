@@ -4,7 +4,6 @@ from django.db import models
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_ultima_edicao = models.DateTimeField(auto_now_add=True)
 
@@ -13,14 +12,11 @@ class Categoria(models.Model):
 
 class Produtos(models.Model):
     nome = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
     descricao = models.TextField(blank=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
-    disponivel = models.BooleanField(default=True)
     estoque = models.PositiveIntegerField()
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_ultima_edicao = models.DateTimeField(auto_now_add=True)
-    imagem = models.ImageField(upload_to='imagens_produtos')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -42,7 +38,7 @@ class Cliente(models.Model):
     email = models.EmailField()
     data_nascimento = models.DateField()
     telefone = models.CharField(max_length=14)
-    data_inscricao = models.DateTimeField()
+    data_inscricao = models.DateTimeField(auto_now_add=True)
     endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)
 
     def __str__(self):

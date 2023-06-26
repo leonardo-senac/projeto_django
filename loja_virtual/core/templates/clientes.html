@@ -23,6 +23,22 @@
         </tr>
         {% endfor %}
     </table>
-    <h1>{{qualquer}}</h1>
+
+    <form action="{% url 'cadastrar_cliente_endereco' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Digite seu nome..." name="nome_cliente">
+        <input type="text" placeholder="Digite seu CPF..." name="cpf">
+        <input type="email" placeholder="Digite seu email..." name="email">
+        <input type="date" name="data_nascimento">
+        <input type="tel" placeholder="Digite seu telefone" name="telefone">
+        <br>
+        <input type="text" placeholder="Digite sua rua..." name="rua">
+        <input type="text" placeholder="Digite seu bairro" name="bairro">
+        <input type="text" placeholder="Digite sua cidade..." name="cidade">
+        <input type="text" placeholder="Digite o complemento..." name="complemento">
+        <input type="text" placeholder="Digite o número..." name="numero">
+        <br>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
 </body>
 </html>

@@ -21,5 +21,7 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', lista_clientes),
-    path('produtos/', lista_produtos)
+    path('produtos/', lista_produtos),
+    path('cadastrar_cliente_endereco/', cadastrar_cliente_endereco, name='cadastrar_cliente_endereco'),
+    path('cadastrar_categoria', cadastrar_categoria, name='cadastrar_categoria')
 ]

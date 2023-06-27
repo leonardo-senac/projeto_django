@@ -36,14 +36,13 @@
         <input type="text" placeholder="Digite o nome do produto..." name="nome_produto">
         <input type="text" placeholder="Digite a descrição do produto..." name="descricao">
         <input type="number" placeholder="Digite o estoque..." name="estoque">
-        <input type="number" placeholder="Digite o preço..." name="preco">
+        <input type="number" placeholder="Digite o preço..." name="preco" step="0.01">
         <select name="categoria" class="form-select">
             <option selected>----------</option>
             {% for categoria in categorias %}
                 <option value="{{categoria.id}}">{{categoria.nome}}</option>
             {% endfor %}
         </select>
-
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </body>

@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
-from .models import *
+from .models import * # Tradução: Do arquivo models, traga tudo (*)
 
 # Create your views here.
 
-def lista_clientes(request):
-    clientes = Cliente.objects.all()
+def lista_clientes(request): #View para mandar os clientes para o html
+    clientes = Cliente.objects.all() # Puxa todos os clientes do banco de dados e salva na lista
+                                     # chamada clientes
+    #Renderizando o clientes.html passando a lista de cliente para ser acessada pelo django
     return render(request, 'clientes.html', {'clientes': clientes})
 
-def cadastrar_cliente_endereco(request):
+def cadastrar_cliente_endereco(request): # View para receber os dados do cliente e cadastrar no banco de dados
     # Puxando os dados do endereço e cadastrando ele
     nova_rua = request.POST.get('rua')
     novo_bairro = request.POST.get('bairro')
@@ -30,23 +32,24 @@ def cadastrar_cliente_endereco(request):
     return redirect(lista_clientes)
 
 
-def lista_produtos(request):
+def lista_produtos(request): # View para puxar os produtos do banco e mandar para o html
     produtos = Produtos.objects.all()
-    return render(request, 'produtos.html', {'produtos': produtos})
+    categorias = Categoria.objects.all()
+    return render(request, 'produtos.html', {'produtos': produtos, 'categorias': categorias})
 
-def cadastrar_produto(request):
+def cadastrar_produto(request): # View para receber o produto do html e cadastrar no banco
     novo_nome = request.POST.get('nome_produto')
     nova_descricao = request.POST.get('descricao')
     novo_preco = request.POST.get('preco')
     novo_estoque = request.POST.get('estoque')
     id_categoria = request.POST.get('categoria')
-    nova_categoria = Categoria.objects.get(id=id_categoria)
+    nova_categoria = Categoria.objects.get(id=int(id_categoria))
 
-    Produtos.objects.create(nome=novo_nome, descreicao=nova_descricao, preco=novo_preco, estoque=novo_estoque, categoria=nova_categoria)
+    Produtos.objects.create(nome=novo_nome, descricao=nova_descricao, preco=novo_preco, estoque=novo_estoque, categoria=nova_categoria)
 
-    return render(lista_clientes)
+    return redirect(lista_produtos)
 
-def cadastrar_categoria(request):
+def cadastrar_categoria(request): # View para receber a categoria do html e cadastrar no banco
     novo_nome = request.POST.get('nome_categoria')
 
     Categoria.objects.create(nome=novo_nome)

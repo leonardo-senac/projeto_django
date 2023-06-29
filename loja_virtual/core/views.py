@@ -55,3 +55,8 @@ def cadastrar_categoria(request): # View para receber a categoria do html e cada
     Categoria.objects.create(nome=novo_nome)
 
     return redirect(lista_produtos)
+
+# Crie uma view chamada lista_categorias para mandar as categorias para o html chamado categorias.html
+# Precisa passar o parâmetro request
+# Precisa puxar do banco de dados as categorias
+# Precisa retornar a função render passando o request, o arquivo html e a variável que quer passar
